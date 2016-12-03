@@ -361,8 +361,20 @@ void QQuickStyleItem1::initStyleOption()
         if (opt->icon.isNull() && !opt->text.isEmpty())
             opt->toolButtonStyle = Qt::ToolButtonTextOnly;
 
-        int e = qApp->style()->pixelMetric(QStyle::PM_ToolBarIconSize, m_styleoption, 0);
-        opt->iconSize = QSize(e, e);
+        if (m_properties.contains("toolButtonStyle")) {
+            Qt::ToolButtonStyle tbStyle = static_cast<Qt::ToolButtonStyle>(m_properties.value("toolButtonStyle").toInt());
+            if(Qt::ToolButtonIconOnly <= tbStyle && tbStyle <= Qt::ToolButtonFollowStyle) {
+                opt->toolButtonStyle = tbStyle;
+            }
+        }
+
+        QSize iconSize = m_properties.value("iconSize").toSize();
+        if (iconSize.isValid()) {
+            opt->iconSize = iconSize;
+        } else {
+            int e = qApp->style()->pixelMetric(QStyle::PM_ToolBarIconSize, m_styleoption, 0);
+            opt->iconSize = QSize(e, e);
+        }
 
         if (const QFont *font = QGuiApplicationPrivate::platformTheme()->font(QPlatformTheme::ToolButtonFont)) {
             opt->fontMetrics = QFontMetrics(*font);
