@@ -58,7 +58,9 @@ Style {
         properties: {
             "icon": control.__iconAction.__icon,
             "position": control.__position,
-            "menu" : control.menu !== null
+            "menu" : control.menu !== null,
+            "toolButtonStyle" : control.toolButtonStyle,
+            "iconSize" : control.iconSize
         }
     }
 }

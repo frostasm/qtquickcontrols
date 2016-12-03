@@ -2451,6 +2451,8 @@ Module {
         Property { name: "__panel"; type: "QQuickItem"; isPointer: true }
         Property { name: "styleHints"; type: "QVariant" }
         Property { name: "__styleData"; type: "QObject"; isPointer: true }
+        Property { name: "toolButtonStyle"; type: "int" }
+        Property { name: "iconSize"; type: "QSizeF" }
     }
     Component {
         prototype: "QQuickFocusScope"

@@ -83,5 +83,9 @@ import QtQuick.Controls.Private 1.0
 
 Button {
     id: button
+
+    property int toolButtonStyle: -1 // default style
+    property size iconSize: Qt.size(-1,-1) // default system size
+
     style: Settings.styleComponent(Settings.style, "ToolButtonStyle.qml", button)
 }
