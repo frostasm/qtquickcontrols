@@ -48,7 +48,7 @@ BasicTableView {
 
     property var model
 
-    readonly property int rowCount: __listView.count
+    readonly property alias rowCount: root.__rowCount
     property alias currentRow: root.__currentRow
 
     signal activated(int row)

@@ -374,6 +374,11 @@ ScrollView {
     */
     property alias __currentRow: listView.currentIndex
 
+    /*! \internal
+        This property is forwarded to TableView::rowCount, but not to any TreeView property.
+    */
+    property alias __rowCount: listView.count
+
     /*! \internal */
     readonly property alias __listView: listView
 
