@@ -117,6 +117,7 @@ Control {
 
     /*! The model role used for populating the ComboBox. */
     property string textRole: ""
+    property string enabledRole: ""
 
     /*! \qmlproperty int ComboBox::currentIndex
         The index of the currently selected item in the ComboBox.
@@ -610,6 +611,10 @@ Control {
                 text: popup.textRole === '' ?
                         modelData :
                           ((popup.modelIsArray ? modelData[popup.textRole] : model[popup.textRole]) || '')
+
+                enabled: comboBox.enabledRole === '' ? 
+                           true : 
+                             (!!(popup.modelIsArray ? modelData[comboBox.enabledRole] : model[comboBox.enabledRole]))
                 onTriggered: {
                     if (index !== currentIndex)
                         activated(index)
