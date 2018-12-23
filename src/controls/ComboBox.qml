@@ -361,8 +361,14 @@ Control {
     /*! \internal */
     function __selectPrevItem() {
         input.blockUpdate = true
-        if (currentIndex > 0) {
-            currentIndex--;
+
+        var newIndex = currentIndex - 1
+        while (newIndex >= 0 && !popupItems.objectAt(newIndex).enabled) {
+            --newIndex
+        }
+
+        if (newIndex >= 0) {
+            currentIndex = newIndex;
             input.text = popup.currentText;
             activated(currentIndex);
         }
@@ -372,8 +378,14 @@ Control {
     /*! \internal */
     function __selectNextItem() {
         input.blockUpdate = true;
-        if (currentIndex < popupItems.count - 1) {
-            currentIndex++;
+
+        var newIndex = currentIndex + 1
+        while (newIndex < popupItems.count && !popupItems.objectAt(newIndex).enabled) {
+            ++newIndex
+        }
+
+        if (newIndex < popupItems.count) {
+            currentIndex = newIndex;
             input.text = popup.currentText;
             activated(currentIndex);
         }
